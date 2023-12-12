@@ -1,0 +1,12 @@
+debug/board.o
+debug/cell.o
+debug/dataexchange.o
+debug/loginui.o
+debug/main.o
+debug/mainui.o
+debug/piece.o
+debug/moc_board.o
+debug/moc_cell.o
+debug/moc_dataexchange.o
+debug/moc_loginui.o
+debug/moc_mainui.o

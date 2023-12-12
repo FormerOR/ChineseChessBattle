@@ -1,0 +1,10 @@
+release/cell.o
+release/dataexchange.o
+release/loginui.o
+release/main.o
+release/mainui.o
+release/piece.o
+release/moc_cell.o
+release/moc_dataexchange.o
+release/moc_loginui.o
+release/moc_mainui.o

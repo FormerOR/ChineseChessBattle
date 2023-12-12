@@ -29,15 +29,16 @@ public slots:
         emit setup(cells);
         this->opp_name=opp_name;
     }
-    void setOppMes(const QString message){
-        message_area->setText(opp_name+QString("说：")+message);
-    }
-    void sendMes(){
-        emit onMes(text->text());
-    }
-    void sendAdmit(){
-        emit onMes("我认输！");
-    }
+    // TODO 聊天功能
+//    void setOppMes(const QString message){
+//        message_area->setText(opp_name+QString("说：")+message);
+//    }
+//    void sendMes(){
+//        emit onMes(text->text());
+//    }
+//    void sendAdmit(){
+//        emit onMes("我认输！");
+//    }
 public:
     MainUI();
 private:

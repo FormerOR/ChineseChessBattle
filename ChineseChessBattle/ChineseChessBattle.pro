@@ -10,16 +10,21 @@ CONFIG += c++17
 
 SOURCES += \
     board.cpp \
+    cell.cpp \
     dataexchange.cpp \
     loginui.cpp \
     main.cpp \
-    mainui.cpp
+    mainui.cpp \
+    piece.cpp
 
 HEADERS += \
+    algorithms.h \
     board.h \
+    cell.h \
     dataexchange.h \
     loginui.h \
-    mainui.h
+    mainui.h \
+    piece.h
 
 FORMS +=
 

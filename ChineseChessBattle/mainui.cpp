@@ -5,8 +5,8 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
-#include "network.h"
-#include "board.h"
+#include "dataexchange.h"
+//#include "board.h"
 
 MainUI::MainUI() : QDialog(),
     layout(new QVBoxLayout), boardLayout(new QGridLayout),
@@ -58,32 +58,32 @@ MainUI::MainUI() : QDialog(),
 
     //Message Area UI:
 
-    message_area = new QLabel;
-    message_area->setStyleSheet("border: 1px solid #a7a8bd;");
-    QHBoxLayout* send_area = new QHBoxLayout;
-    text = new QLineEdit;
-    QPushButton* button = new QPushButton("发送");
-    QPushButton* admit = new QPushButton("认输");
-    send_area->addWidget(text);
-    text->setMinimumWidth(0.5 * width());
-    text->setMaximumWidth(0.7 * width());
-    send_area->addWidget(button, Qt::AlignRight);
-    send_area->addWidget(admit, Qt::AlignRight);
-    button->setMaximumWidth(0.2 * width());
-    admit->setMaximumWidth(0.2 * width());
-    layout->addWidget(message_area);
-    layout->addLayout(send_area);
+//    message_area = new QLabel;
+//    message_area->setStyleSheet("border: 1px solid #a7a8bd;");
+//    QHBoxLayout* send_area = new QHBoxLayout;
+//    text = new QLineEdit;
+//    QPushButton* button = new QPushButton("发送");
+//    QPushButton* admit = new QPushButton("认输");
+//    send_area->addWidget(text);
+//    text->setMinimumWidth(0.5 * width());
+//    text->setMaximumWidth(0.7 * width());
+//    send_area->addWidget(button, Qt::AlignRight);
+//    send_area->addWidget(admit, Qt::AlignRight);
+//    button->setMaximumWidth(0.2 * width());
+//    admit->setMaximumWidth(0.2 * width());
+//    layout->addWidget(message_area);
+//    layout->addLayout(send_area);
 
 
     setLayout(layout);
     //Add your own code here:
     /////////////////////////
-    connect(Network::getInstance(),SIGNAL(findOK(QString)),this,SLOT(onFind(QString)));
-    connect(this,&MainUI::setup,Board::getBoard(),&Board::onSetup);
-    connect(button,&QPushButton::clicked,this,&MainUI::sendMes);
-    connect(admit,&QPushButton::clicked,Board::getBoard(),&Board::admit);
-    connect(admit,&QPushButton::clicked,this,&MainUI::sendAdmit);
-    connect(this,&MainUI::onMes,Network::getInstance(),&Network::sendMessage);
-    connect(Network::getInstance(),&Network::message,this,&MainUI::setOppMes);
+    connect(DataExchange::getInstance(),SIGNAL(findOK(QString)),this,SLOT(onFind(QString)));
+//    connect(this,&MainUI::setup,Board::getBoard(),&Board::onSetup);
+//    connect(button,&QPushButton::clicked,this,&MainUI::sendMes);
+//    connect(admit,&QPushButton::clicked,Board::getBoard(),&Board::admit);
+//    connect(admit,&QPushButton::clicked,this,&MainUI::sendAdmit);
+//    connect(this,&MainUI::onMes,Network::getInstance(),&Network::sendMessage);
+//    connect(Network::getInstance(),&Network::message,this,&MainUI::setOppMes);
     /////////////////////////
 }

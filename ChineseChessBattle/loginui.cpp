@@ -1,5 +1,5 @@
 #include "loginui.h"
-//#include "mainui.h"
+#include "mainui.h"
 #include "dataexchange.h"
 
 #include <QDir>
@@ -43,16 +43,14 @@ void LoginUI::onSignup() {
 }
 
 void LoginUI::loginSuccess() {
-//    this->disconnect();
-//    hide();
-//    MainUI* ui = new MainUI;
-//    ui->show();
-//    auto popup = new DialogUI;
-//    popup->show();
-//    close();
     QMessageBox* nov = new QMessageBox;
     nov->setText(tr("登陆成功！"));
     nov->show();
+    this->disconnect();
+    hide();
+    MainUI* ui = new MainUI;
+    ui->show();
+    close();
 }
 
 void LoginUI::signupSuccess() {
