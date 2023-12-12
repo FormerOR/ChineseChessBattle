@@ -10,7 +10,7 @@
 
 using Pos = std::pair<int, int>;
 
-class Piece {   //请不要继承QObject
+class Piece {
 public:
     mutable int x, y;
     //正数
@@ -40,7 +40,7 @@ public:
     inline wchar_t text() const {
         return convert(type);
     }
-    inline void move(int x, int y) const {  //请勿修改
+    inline void move(int x, int y) const {
         this->x = x;
         this->y = y;
     }

@@ -29,17 +29,17 @@ LoginUI::LoginUI()
     connect(login,SIGNAL(clicked()),this,SLOT(onLogin()));
     connect(DataExchange::getInstance(),SIGNAL(signupOK()),this,SLOT(signupSuccess()));
     connect(DataExchange::getInstance(),SIGNAL(loginOK()),this,SLOT(loginSuccess()));
-    //TODO 处理错误
-    //connect(DataExchange::getInstance(),SIGNAL(failure(QString)),this,SLOT(onFailure(QString)));
+    //处理错误
+    connect(DataExchange::getInstance(),SIGNAL(failure(QString)),this,SLOT(onFailure(QString)));
 
 }
 
 void LoginUI::onLogin() {
-    DataExchange::getInstance()->login();
+    DataExchange::getInstance()->login(userTxt->text(), passwdTxt->text());
 }
 
 void LoginUI::onSignup() {
-    DataExchange::getInstance()->signup();
+    DataExchange::getInstance()->signup(userTxt->text(), passwdTxt->text());
 }
 
 void LoginUI::loginSuccess() {

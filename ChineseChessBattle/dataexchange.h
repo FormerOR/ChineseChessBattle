@@ -28,7 +28,7 @@ public:
 signals:
     void loginOK();
     void signupOK();
-    void Failure();
+    void failure(QString);
 };
 
 #endif // DATAEXCHANGE_H
