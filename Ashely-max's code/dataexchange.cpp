@@ -17,23 +17,13 @@ bool DataExchange::login(){
 bool DataExchange::signup(const QString& username, const QString& password) {
     // 在这里实现将账号密码写入JSON文件的逻辑
     // 登陆成功则 emit DataExchange::signupOK(); return 1;
-    // 失败 emit DataExchange::failure(); return 0;
-
-    //检测初始化JSON文件
-    QFile file("UserInfo.json");
-    if (!file.exists()) {
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            // 若文件创建失败
-            emit failure(QString("创建JSON文件失败"));
-            return 0;
-        }
-        file.close();
-    }
+    // 失败 emit DataExchange::Failure(); return 0;
 
     // 读取JSON文件
+    QFile file("data.json");
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         // 若文件打开失败
-        emit failure(QString("打开JSON失败"));
+        emit Failure();
         return 0;
     }
 
@@ -42,6 +32,12 @@ bool DataExchange::signup(const QString& username, const QString& password) {
 
     // 解析JSON内容
     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+    if (doc.isNull()) {
+        // 若解析JSON失败
+        emit Failure();
+        return 0;
+    }
+
 
     QJsonObject rootObject = doc.object();
 
@@ -68,13 +64,13 @@ bool DataExchange::signup(const QString& username, const QString& password) {
 bool DataExchange::login(const QString& username, const QString& password) {
     // 在这里实现从本地JSON文件中检索用户名和对应密码判断是否登陆成功
     // 登陆成功则 emit DataExchange::loginOK(); return 1;
-    // 失败 emit DataExchange::failure(); return 0;
+    // 失败 emit DataExchange::Failure(); return 0;
 
     // 读取JSON文件
-    QFile file("UserInfo.json");
+    QFile file("data.json");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         // 若文件打开失败
-        emit failure(QString("打开JSON失败"));
+        emit Failure();
         return 0;
     }
 
@@ -85,7 +81,7 @@ bool DataExchange::login(const QString& username, const QString& password) {
     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
     if (doc.isNull()) {
         // 若解析JSON失败
-        emit failure(QString("解析JSON失败"));
+        emit Failure();
         return 0;
     }
 
@@ -109,7 +105,7 @@ bool DataExchange::login(const QString& username, const QString& password) {
     }
 
     // 若登录失败
-    emit failure(QString("登陆失败!请检查用户名密码!"));
+    emit Failure();
     return 0;
 }
 

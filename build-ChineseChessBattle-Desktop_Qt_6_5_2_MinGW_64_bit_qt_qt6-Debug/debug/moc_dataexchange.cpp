@@ -42,7 +42,7 @@ static constexpr auto qt_meta_stringdata_CLASSDataExchangeENDCLASS = QtMocHelper
     "loginOK",
     "",
     "signupOK",
-    "Failure"
+    "failure"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSDataExchangeENDCLASS_t {
@@ -61,13 +61,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSDataExchangeENDCLASS_t qt_meta_
         QT_MOC_LITERAL(13, 7),  // "loginOK"
         QT_MOC_LITERAL(21, 0),  // ""
         QT_MOC_LITERAL(22, 8),  // "signupOK"
-        QT_MOC_LITERAL(31, 7)   // "Failure"
+        QT_MOC_LITERAL(31, 7)   // "failure"
     },
     "DataExchange",
     "loginOK",
     "",
     "signupOK",
-    "Failure"
+    "failure"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -89,12 +89,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSDataExchangeENDCLASS[] = {
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    0,   32,    2, 0x06,    1 /* Public */,
        3,    0,   33,    2, 0x06,    2 /* Public */,
-       4,    0,   34,    2, 0x06,    3 /* Public */,
+       4,    1,   34,    2, 0x06,    3 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    2,
 
        0        // eod
 };
@@ -112,8 +112,9 @@ Q_CONSTINIT const QMetaObject DataExchange::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'signupOK'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'Failure'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        // method 'failure'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -126,7 +127,7 @@ void DataExchange::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         switch (_id) {
         case 0: _t->loginOK(); break;
         case 1: _t->signupOK(); break;
-        case 2: _t->Failure(); break;
+        case 2: _t->failure((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -146,14 +147,13 @@ void DataExchange::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             }
         }
         {
-            using _t = void (DataExchange::*)();
-            if (_t _q_method = &DataExchange::Failure; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (DataExchange::*)(QString );
+            if (_t _q_method = &DataExchange::failure; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 2;
                 return;
             }
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *DataExchange::metaObject() const
@@ -199,8 +199,9 @@ void DataExchange::signupOK()
 }
 
 // SIGNAL 2
-void DataExchange::Failure()
+void DataExchange::failure(QString _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_WARNING_POP

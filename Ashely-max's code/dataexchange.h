@@ -21,14 +21,13 @@ public:
     bool login();
 
     // 具体实现的重载函数
-    // TODO
     bool signup(const QString& username, const QString& password);
     bool login(const QString& username, const QString& password);
 
 signals:
     void loginOK();
     void signupOK();
-    void failure(QString);
+    void Failure();
 };
 
 #endif // DATAEXCHANGE_H
