@@ -1,23 +1,10 @@
 #include "board.h"
 #include "algorithms.h"
-//#include "network.h"
-//#include "king.h"
-//#include "rook.h"
-//#include "pawn.h"
-//#include "adviser.h"
-//#include "elephant.h"
-//#include "horse.h"
-//#include "cannon.h"
 
 using Type = Piece::PieceType;
 
 Board::Board() {
-    //Add your own code below
-    //////////////////////////
-//    connect(this,&Board::onMyMove,Network::getInstance(),&Network::onMove);
-//    connect(Network::getInstance(),&Network::move,this,&Board::onMove);
-//    connect(Network::getInstance(),&Network::onWin,this,&Board::onWin);
-    //////////////////////////
+    //连接决定胜负的信号槽 TODO
 }
 void Board::onWin(){
     emit win(side());
@@ -37,14 +24,7 @@ void Board::onSetup(Cell** cells) {
         this->cells.emplace(std::piecewise_construct, std::tuple(cell->x, cell->y), std::tuple(cell));
     }
     std::map<Type, Constructor> factory = {
-        //请将nullptr替换为'new ClassName(x, y, side)'，请正确设置派生类构造函数参数
-//        { Type::JIANG_SHUAI, [](int x, int y, bool side)->const Piece* { return new King(x,y,side); } },
-//        { Type::SHI, [](int x, int y, bool side)->const Piece* { return new Adviser(x,y,side); } },
-//        { Type::XIANG, [](int x, int y, bool side)->const Piece* { return new Elephant(x,y,side); } },
-//        { Type::MA, [](int x, int y, bool side)->const Piece* { return new Horse(x,y,side); } },
-//        { Type::JU, [](int x, int y, bool side)->const Piece* { return new Rook(x,y,side); } },
-//        { Type::PAO, [](int x, int y, bool side)->const Piece* { return new Cannon(x,y,side); } },
-//        { Type::BING_ZU, [](int x, int y, bool side)->const Piece* { return new Pawn(x,y,side); } }
+        //将nullptr替换为'new ClassName(x, y, side)'，来设置派生类构造函数参数 TODO
         { Type::JIANG_SHUAI, [](int x, int y, bool side)->const Piece* { return nullptr; } },
         { Type::SHI, [](int x, int y, bool side)->const Piece* { return nullptr; } },
         { Type::XIANG, [](int x, int y, bool side)->const Piece* { return nullptr; } },
@@ -58,14 +38,9 @@ void Board::onSetup(Cell** cells) {
         this->cells[pos]->change(piece);
     if (side()) 
         your_turn = true;
-
-    //Add your own code below
-    //////////////////////////
-
-
-    //////////////////////////
 }
 
+// 设置棋子的位置
 void Board::setPieces(const std::map<Type, Constructor> & factory) {
     static std::list<std::pair<Pos, Type>> piece_list = {
         { { 1, 1 }, Type::RED_JU },
@@ -106,6 +81,7 @@ void Board::setPieces(const std::map<Type, Constructor> & factory) {
         pieces.emplace(pos, factory.at(removeSide(type))(pos.first, pos.second, side() == getSide(type)));
 }
 
+// 走棋的函数
 void Board::move(const Pos from, const Pos to) {
 //    qDebug()<<pieces;
     const auto piece = pieces.at(from);
@@ -125,6 +101,7 @@ void Board::move(const Pos from, const Pos to) {
     judgeStatus();
 }
 
+// 选中棋子的一系列动作
 void Board::onClick(int x, int y) {
     std::lock_guard guard(lock);
     static Piece const* selected = nullptr;
@@ -135,7 +112,6 @@ void Board::onClick(int x, int y) {
         const auto& piece = pieces.at(pos);
         if (piece->side() == side()) {
             selected = piece;
-//            qDebug()<<selected->isValidMove(x,y);
             cells.at(pos)->select();
             return;
         }
@@ -143,14 +119,8 @@ void Board::onClick(int x, int y) {
     if (!selected)
         return;
     if (selected->isValidMove(x, y)) {
-//        qDebug()<<selected->isValidMove(x,y);
         cells.at(pos)->fineMove();
-//        qDebug()<<"Board.cpp:onClick->selected->pos()在move之前:"<<selected->pos();
-        //Add your own code here
-        //////////////////////////
         emit onMyMove(selected->pos(),pos);
-        //////////////////////////
-        /// \brief move
         your_turn = false;
         move(selected->pos(), pos);
         moved = true;
@@ -160,9 +130,10 @@ void Board::onClick(int x, int y) {
 }
 
 void Board::admit(){
-    emit win(!side());
+    // 投降预留 TODO
 }
 
+// 移动棋子前置函数
 void Board::onMove(const Pos from, const Pos to) {
     std::lock_guard guard(lock);
 //    qDebug()<<"Board:onMove->from,to:"<<from<<to;
@@ -171,9 +142,8 @@ void Board::onMove(const Pos from, const Pos to) {
     moved = false;
 }
 
+// 一个在棋盘上固定位置寻找棋子的工具函数
 const std::list<std::pair<Pos, Piece::PieceType>> Board::find(int x, int y, int side) const {
-    //Add your own code here
-    //////////////////////////
     std::list<std::pair<Pos, Piece::PieceType>> result;
     for (const auto& [pos, piece] : pieces){
         if(((x==-1)||(x==pos.first))&&((y==-1)||(y==pos.second))&&((side==-1)||((side!=-1)&&(side==piece->side())))){
@@ -181,5 +151,4 @@ const std::list<std::pair<Pos, Piece::PieceType>> Board::find(int x, int y, int 
         }
     }
     return result;
-    //////////////////////////
 }

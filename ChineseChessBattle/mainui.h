@@ -6,9 +6,6 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QLineEdit>
-#include "board.h"
-
-//#include "network.h"
 
 class Cell;
 class MainUI : public QDialog
@@ -30,15 +27,6 @@ public slots:
         this->opp_name=opp_name;
     }
     // TODO 聊天功能
-//    void setOppMes(const QString message){
-//        message_area->setText(opp_name+QString("说：")+message);
-//    }
-//    void sendMes(){
-//        emit onMes(text->text());
-//    }
-//    void sendAdmit(){
-//        emit onMes("我认输！");
-//    }
 public:
     MainUI();
 private:
