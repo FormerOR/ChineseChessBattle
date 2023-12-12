@@ -15,16 +15,20 @@ public:
         return singleton;
     }
 
-    // 注册操作
+    // 简化版注册操作
     bool signup();
-    // 登录操作
+    // 简化版登录操作
     bool login();
-    // 重载TODO
+
+    // 具体实现的重载函数
+    // TODO
     bool signup(const QString& username, const QString& password);
+    bool login(const QString& username, const QString& password);
 
 signals:
     void loginOK();
     void signupOK();
+    void Failure();
 };
 
 #endif // DATAEXCHANGE_H

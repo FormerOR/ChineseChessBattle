@@ -326,6 +326,7 @@ Makefile: ../ChineseChessBattle/ChineseChessBattle.pro ../../../qt/6.5.2/mingw_6
 		../../../qt/6.5.2/mingw_64/mkspecs/features/qt_config.prf \
 		../../../qt/6.5.2/mingw_64/mkspecs/win32-g++/qmake.conf \
 		../../../qt/6.5.2/mingw_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../qt/6.5.2/mingw_64/mkspecs/features/exclusive_builds.prf \
 		../../../qt/6.5.2/mingw_64/mkspecs/features/toolchain.prf \
 		../../../qt/6.5.2/mingw_64/mkspecs/features/default_pre.prf \
@@ -355,7 +356,6 @@ Makefile: ../ChineseChessBattle/ChineseChessBattle.pro ../../../qt/6.5.2/mingw_6
 		../../../qt/6.5.2/mingw_64/lib/Qt6Gui.prl \
 		../../../qt/6.5.2/mingw_64/lib/Qt6Core.prl \
 		../../../qt/6.5.2/mingw_64/lib/Qt6EntryPoint.prl \
-		.qmake.stash \
 		../../../qt/6.5.2/mingw_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ../ChineseChessBattle/ChineseChessBattle.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
 ../../../qt/6.5.2/mingw_64/mkspecs/features/spec_pre.prf:
@@ -614,6 +614,7 @@ Makefile: ../ChineseChessBattle/ChineseChessBattle.pro ../../../qt/6.5.2/mingw_6
 ../../../qt/6.5.2/mingw_64/mkspecs/features/qt_config.prf:
 ../../../qt/6.5.2/mingw_64/mkspecs/win32-g++/qmake.conf:
 ../../../qt/6.5.2/mingw_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../qt/6.5.2/mingw_64/mkspecs/features/exclusive_builds.prf:
 ../../../qt/6.5.2/mingw_64/mkspecs/features/toolchain.prf:
 ../../../qt/6.5.2/mingw_64/mkspecs/features/default_pre.prf:
@@ -643,7 +644,6 @@ Makefile: ../ChineseChessBattle/ChineseChessBattle.pro ../../../qt/6.5.2/mingw_6
 ../../../qt/6.5.2/mingw_64/lib/Qt6Gui.prl:
 ../../../qt/6.5.2/mingw_64/lib/Qt6Core.prl:
 ../../../qt/6.5.2/mingw_64/lib/Qt6EntryPoint.prl:
-.qmake.stash:
 ../../../qt/6.5.2/mingw_64/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../ChineseChessBattle/ChineseChessBattle.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
