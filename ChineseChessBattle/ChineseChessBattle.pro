@@ -12,19 +12,27 @@ SOURCES += \
     board.cpp \
     cell.cpp \
     dataexchange.cpp \
+    king.cpp \
     loginui.cpp \
     main.cpp \
     mainui.cpp \
     piece.cpp
 
 HEADERS += \
+    adviser.h \
     algorithms.h \
     board.h \
+    cannon.h \
     cell.h \
     dataexchange.h \
+    elephant.h \
+    horse.h \
+    king.h \
     loginui.h \
     mainui.h \
-    piece.h
+    pawn.h \
+    piece.h \
+    rook.h
 
 FORMS +=
 

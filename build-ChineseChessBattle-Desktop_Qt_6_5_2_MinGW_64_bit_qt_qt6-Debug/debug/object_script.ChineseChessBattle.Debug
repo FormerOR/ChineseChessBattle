@@ -1,6 +1,7 @@
 debug/board.o
 debug/cell.o
 debug/dataexchange.o
+debug/king.o
 debug/loginui.o
 debug/main.o
 debug/mainui.o

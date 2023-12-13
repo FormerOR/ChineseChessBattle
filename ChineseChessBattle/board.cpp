@@ -12,9 +12,6 @@ using Type = Piece::PieceType;
 
 Board::Board() {
     //连接决定胜负的信号槽 TODO
-    connect(this,&Board::onMyMove,Network::getInstance(),&Network::onMove);
-    connect(Network::getInstance(),&Network::move,this,&Board::onMove);
-    connect(Network::getInstance(),&Network::onWin,this,&Board::onWin);
 }
 void Board::onWin(){
     emit win(side());

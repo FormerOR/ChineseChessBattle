@@ -1,6 +1,7 @@
 release/board.o
 release/cell.o
 release/dataexchange.o
+release/king.o
 release/loginui.o
 release/main.o
 release/mainui.o
